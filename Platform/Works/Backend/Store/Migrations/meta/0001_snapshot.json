@@ -1,0 +1,1672 @@
+{
+  "id": "ddc24957-0636-47f4-b8a0-255fb767c96e",
+  "prevId": "6a3ca6d8-cfe9-4d37-9e8c-9d2fec6d9da7",
+  "version": "6",
+  "dialect": "sqlite",
+  "tables": {
+    "Blobs": {
+      "name": "Blobs",
+      "columns": {
+        "Hash": {
+          "name": "Hash",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Mime": {
+          "name": "Mime",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Size": {
+          "name": "Size",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Width": {
+          "name": "Width",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Height": {
+          "name": "Height",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Blocks": {
+      "name": "Blocks",
+      "columns": {
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "TargetId": {
+          "name": "TargetId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Blocks_UserId_Users_Id_fk": {
+          "name": "Blocks_UserId_Users_Id_fk",
+          "tableFrom": "Blocks",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Blocks_TargetId_Users_Id_fk": {
+          "name": "Blocks_TargetId_Users_Id_fk",
+          "tableFrom": "Blocks",
+          "columnsFrom": [
+            "TargetId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Blocks_UserId_TargetId_pk": {
+          "columns": [
+            "UserId",
+            "TargetId"
+          ],
+          "name": "Blocks_UserId_TargetId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Connections": {
+      "name": "Connections",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Platform": {
+          "name": "Platform",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Handle": {
+          "name": "Handle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Mode": {
+          "name": "Mode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Secret": {
+          "name": "Secret",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'active'"
+        },
+        "CheckedAt": {
+          "name": "CheckedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ConnectionsAccount": {
+          "name": "ConnectionsAccount",
+          "columns": [
+            "UserId",
+            "Platform",
+            "Handle"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "Connections_UserId_Users_Id_fk": {
+          "name": "Connections_UserId_Users_Id_fk",
+          "tableFrom": "Connections",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Conversations": {
+      "name": "Conversations",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "UpdatedAt": {
+          "name": "UpdatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Crossposts": {
+      "name": "Crossposts",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "PostId": {
+          "name": "PostId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ConnectionId": {
+          "name": "ConnectionId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'queued'"
+        },
+        "RemoteId": {
+          "name": "RemoteId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "RemoteUrl": {
+          "name": "RemoteUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Error": {
+          "name": "Error",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "PostedAt": {
+          "name": "PostedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "CrosspostsTarget": {
+          "name": "CrosspostsTarget",
+          "columns": [
+            "PostId",
+            "ConnectionId"
+          ],
+          "isUnique": true
+        },
+        "CrosspostsStatus": {
+          "name": "CrosspostsStatus",
+          "columns": [
+            "Status"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Crossposts_PostId_Posts_Id_fk": {
+          "name": "Crossposts_PostId_Posts_Id_fk",
+          "tableFrom": "Crossposts",
+          "columnsFrom": [
+            "PostId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Crossposts_ConnectionId_Connections_Id_fk": {
+          "name": "Crossposts_ConnectionId_Connections_Id_fk",
+          "tableFrom": "Crossposts",
+          "columnsFrom": [
+            "ConnectionId"
+          ],
+          "tableTo": "Connections",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Faves": {
+      "name": "Faves",
+      "columns": {
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "PostId": {
+          "name": "PostId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "FavesPost": {
+          "name": "FavesPost",
+          "columns": [
+            "PostId"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Faves_UserId_Users_Id_fk": {
+          "name": "Faves_UserId_Users_Id_fk",
+          "tableFrom": "Faves",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Faves_PostId_Posts_Id_fk": {
+          "name": "Faves_PostId_Posts_Id_fk",
+          "tableFrom": "Faves",
+          "columnsFrom": [
+            "PostId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Faves_UserId_PostId_pk": {
+          "columns": [
+            "UserId",
+            "PostId"
+          ],
+          "name": "Faves_UserId_PostId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Follows": {
+      "name": "Follows",
+      "columns": {
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "TargetId": {
+          "name": "TargetId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "FollowsTarget": {
+          "name": "FollowsTarget",
+          "columns": [
+            "TargetId"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Follows_UserId_Users_Id_fk": {
+          "name": "Follows_UserId_Users_Id_fk",
+          "tableFrom": "Follows",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Follows_TargetId_Users_Id_fk": {
+          "name": "Follows_TargetId_Users_Id_fk",
+          "tableFrom": "Follows",
+          "columnsFrom": [
+            "TargetId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Follows_UserId_TargetId_pk": {
+          "columns": [
+            "UserId",
+            "TargetId"
+          ],
+          "name": "Follows_UserId_TargetId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Invites": {
+      "name": "Invites",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatorId": {
+          "name": "CreatorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Code": {
+          "name": "Code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "UsedBy": {
+          "name": "UsedBy",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "UsedAt": {
+          "name": "UsedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Invites_Code_unique": {
+          "name": "Invites_Code_unique",
+          "columns": [
+            "Code"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "Invites_CreatorId_Users_Id_fk": {
+          "name": "Invites_CreatorId_Users_Id_fk",
+          "tableFrom": "Invites",
+          "columnsFrom": [
+            "CreatorId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "set null"
+        },
+        "Invites_UsedBy_Users_Id_fk": {
+          "name": "Invites_UsedBy_Users_Id_fk",
+          "tableFrom": "Invites",
+          "columnsFrom": [
+            "UsedBy"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "set null"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Media": {
+      "name": "Media",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "PostId": {
+          "name": "PostId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Hash": {
+          "name": "Hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Kind": {
+          "name": "Kind",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Alt": {
+          "name": "Alt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Position": {
+          "name": "Position",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "MediaPost": {
+          "name": "MediaPost",
+          "columns": [
+            "PostId",
+            "Position"
+          ],
+          "isUnique": false
+        },
+        "MediaHash": {
+          "name": "MediaHash",
+          "columns": [
+            "Hash"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Media_PostId_Posts_Id_fk": {
+          "name": "Media_PostId_Posts_Id_fk",
+          "tableFrom": "Media",
+          "columnsFrom": [
+            "PostId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Media_Hash_Blobs_Hash_fk": {
+          "name": "Media_Hash_Blobs_Hash_fk",
+          "tableFrom": "Media",
+          "columnsFrom": [
+            "Hash"
+          ],
+          "tableTo": "Blobs",
+          "columnsTo": [
+            "Hash"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Messages": {
+      "name": "Messages",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ConversationId": {
+          "name": "ConversationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "SenderId": {
+          "name": "SenderId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Body": {
+          "name": "Body",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "MessagesConversation": {
+          "name": "MessagesConversation",
+          "columns": [
+            "ConversationId",
+            "CreatedAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Messages_ConversationId_Conversations_Id_fk": {
+          "name": "Messages_ConversationId_Conversations_Id_fk",
+          "tableFrom": "Messages",
+          "columnsFrom": [
+            "ConversationId"
+          ],
+          "tableTo": "Conversations",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Messages_SenderId_Users_Id_fk": {
+          "name": "Messages_SenderId_Users_Id_fk",
+          "tableFrom": "Messages",
+          "columnsFrom": [
+            "SenderId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "set null"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Mutes": {
+      "name": "Mutes",
+      "columns": {
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "TargetId": {
+          "name": "TargetId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Mutes_UserId_Users_Id_fk": {
+          "name": "Mutes_UserId_Users_Id_fk",
+          "tableFrom": "Mutes",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Mutes_TargetId_Users_Id_fk": {
+          "name": "Mutes_TargetId_Users_Id_fk",
+          "tableFrom": "Mutes",
+          "columnsFrom": [
+            "TargetId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Mutes_UserId_TargetId_pk": {
+          "columns": [
+            "UserId",
+            "TargetId"
+          ],
+          "name": "Mutes_UserId_TargetId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Notifications": {
+      "name": "Notifications",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ActorId": {
+          "name": "ActorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Kind": {
+          "name": "Kind",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "PostId": {
+          "name": "PostId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ReadAt": {
+          "name": "ReadAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "NotificationsUser": {
+          "name": "NotificationsUser",
+          "columns": [
+            "UserId",
+            "CreatedAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Notifications_UserId_Users_Id_fk": {
+          "name": "Notifications_UserId_Users_Id_fk",
+          "tableFrom": "Notifications",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Notifications_ActorId_Users_Id_fk": {
+          "name": "Notifications_ActorId_Users_Id_fk",
+          "tableFrom": "Notifications",
+          "columnsFrom": [
+            "ActorId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Notifications_PostId_Posts_Id_fk": {
+          "name": "Notifications_PostId_Posts_Id_fk",
+          "tableFrom": "Notifications",
+          "columnsFrom": [
+            "PostId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Participants": {
+      "name": "Participants",
+      "columns": {
+        "ConversationId": {
+          "name": "ConversationId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "State": {
+          "name": "State",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'active'"
+        },
+        "ReadAt": {
+          "name": "ReadAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ParticipantsUser": {
+          "name": "ParticipantsUser",
+          "columns": [
+            "UserId"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Participants_ConversationId_Conversations_Id_fk": {
+          "name": "Participants_ConversationId_Conversations_Id_fk",
+          "tableFrom": "Participants",
+          "columnsFrom": [
+            "ConversationId"
+          ],
+          "tableTo": "Conversations",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Participants_UserId_Users_Id_fk": {
+          "name": "Participants_UserId_Users_Id_fk",
+          "tableFrom": "Participants",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Participants_ConversationId_UserId_pk": {
+          "columns": [
+            "ConversationId",
+            "UserId"
+          ],
+          "name": "Participants_ConversationId_UserId_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Posts": {
+      "name": "Posts",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "AuthorId": {
+          "name": "AuthorId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ParentId": {
+          "name": "ParentId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "QuoteId": {
+          "name": "QuoteId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Title": {
+          "name": "Title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Body": {
+          "name": "Body",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "Rating": {
+          "name": "Rating",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'safe'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DeletedAt": {
+          "name": "DeletedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "PostsAuthor": {
+          "name": "PostsAuthor",
+          "columns": [
+            "AuthorId",
+            "CreatedAt"
+          ],
+          "isUnique": false
+        },
+        "PostsParent": {
+          "name": "PostsParent",
+          "columns": [
+            "ParentId",
+            "CreatedAt"
+          ],
+          "isUnique": false
+        },
+        "PostsRecent": {
+          "name": "PostsRecent",
+          "columns": [
+            "CreatedAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Posts_AuthorId_Users_Id_fk": {
+          "name": "Posts_AuthorId_Users_Id_fk",
+          "tableFrom": "Posts",
+          "columnsFrom": [
+            "AuthorId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Posts_ParentId_Posts_Id_fk": {
+          "name": "Posts_ParentId_Posts_Id_fk",
+          "tableFrom": "Posts",
+          "columnsFrom": [
+            "ParentId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "set null"
+        },
+        "Posts_QuoteId_Posts_Id_fk": {
+          "name": "Posts_QuoteId_Posts_Id_fk",
+          "tableFrom": "Posts",
+          "columnsFrom": [
+            "QuoteId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "set null"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Preferences": {
+      "name": "Preferences",
+      "columns": {
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "MaxRating": {
+          "name": "MaxRating",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'safe'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Preferences_UserId_Users_Id_fk": {
+          "name": "Preferences_UserId_Users_Id_fk",
+          "tableFrom": "Preferences",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Reports": {
+      "name": "Reports",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ReporterId": {
+          "name": "ReporterId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PostId": {
+          "name": "PostId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "MessageId": {
+          "name": "MessageId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Reason": {
+          "name": "Reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'open'"
+        },
+        "ResolverId": {
+          "name": "ResolverId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "ReportsStatus": {
+          "name": "ReportsStatus",
+          "columns": [
+            "Status",
+            "CreatedAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Reports_ReporterId_Users_Id_fk": {
+          "name": "Reports_ReporterId_Users_Id_fk",
+          "tableFrom": "Reports",
+          "columnsFrom": [
+            "ReporterId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "set null"
+        },
+        "Reports_PostId_Posts_Id_fk": {
+          "name": "Reports_PostId_Posts_Id_fk",
+          "tableFrom": "Reports",
+          "columnsFrom": [
+            "PostId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Reports_UserId_Users_Id_fk": {
+          "name": "Reports_UserId_Users_Id_fk",
+          "tableFrom": "Reports",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Reports_MessageId_Messages_Id_fk": {
+          "name": "Reports_MessageId_Messages_Id_fk",
+          "tableFrom": "Reports",
+          "columnsFrom": [
+            "MessageId"
+          ],
+          "tableTo": "Messages",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        },
+        "Reports_ResolverId_Users_Id_fk": {
+          "name": "Reports_ResolverId_Users_Id_fk",
+          "tableFrom": "Reports",
+          "columnsFrom": [
+            "ResolverId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "set null"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "ReportsTarget": {
+          "name": "ReportsTarget",
+          "value": "(\"Reports\".\"PostId\" IS NOT NULL) + (\"Reports\".\"UserId\" IS NOT NULL) + (\"Reports\".\"MessageId\" IS NOT NULL) = 1"
+        }
+      }
+    },
+    "Sessions": {
+      "name": "Sessions",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "UserId": {
+          "name": "UserId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Hash": {
+          "name": "Hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ExpiresAt": {
+          "name": "ExpiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Sessions_Hash_unique": {
+          "name": "Sessions_Hash_unique",
+          "columns": [
+            "Hash"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "Sessions_UserId_Users_Id_fk": {
+          "name": "Sessions_UserId_Users_Id_fk",
+          "tableFrom": "Sessions",
+          "columnsFrom": [
+            "UserId"
+          ],
+          "tableTo": "Users",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Snapshots": {
+      "name": "Snapshots",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CrosspostId": {
+          "name": "CrosspostId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Views": {
+          "name": "Views",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "Faves": {
+          "name": "Faves",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "Comments": {
+          "name": "Comments",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "TakenAt": {
+          "name": "TakenAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "SnapshotsCrosspost": {
+          "name": "SnapshotsCrosspost",
+          "columns": [
+            "CrosspostId",
+            "TakenAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Snapshots_CrosspostId_Crossposts_Id_fk": {
+          "name": "Snapshots_CrosspostId_Crossposts_Id_fk",
+          "tableFrom": "Snapshots",
+          "columnsFrom": [
+            "CrosspostId"
+          ],
+          "tableTo": "Crossposts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Tags": {
+      "name": "Tags",
+      "columns": {
+        "PostId": {
+          "name": "PostId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Tag": {
+          "name": "Tag",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "TagsLookup": {
+          "name": "TagsLookup",
+          "columns": [
+            "Tag"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Tags_PostId_Posts_Id_fk": {
+          "name": "Tags_PostId_Posts_Id_fk",
+          "tableFrom": "Tags",
+          "columnsFrom": [
+            "PostId"
+          ],
+          "tableTo": "Posts",
+          "columnsTo": [
+            "Id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "Tags_PostId_Tag_pk": {
+          "columns": [
+            "PostId",
+            "Tag"
+          ],
+          "name": "Tags_PostId_Tag_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "Users": {
+      "name": "Users",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Username": {
+          "name": "Username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Display": {
+          "name": "Display",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Bio": {
+          "name": "Bio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "Avatar": {
+          "name": "Avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "City": {
+          "name": "City",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Region": {
+          "name": "Region",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Role": {
+          "name": "Role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'member'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Users_Username_unique": {
+          "name": "Users_Username_unique",
+          "columns": [
+            "Username"
+          ],
+          "isUnique": true
+        },
+        "UsersCity": {
+          "name": "UsersCity",
+          "columns": [
+            "City",
+            "Region"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
